@@ -1,4 +1,4 @@
-package model;
+package s25.cs151.application.model;
 
 public class Schedule {
     private String studentFullName;

@@ -1,4 +1,4 @@
-package model;
+package s25.cs151.application.model;
 
 public class Course {
     private String CourseCode;

@@ -1,4 +1,4 @@
-package controller;
+package s25.cs151.application.controller;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Schedule;
+import s25.cs151.application.model.Schedule;
+import s25.cs151.application.model.dao.CSVScheduleDAO;
+import s25.cs151.application.model.dao.ScheduleDAO;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
@@ -24,8 +26,10 @@ public class scheduleController extends Application{
     private TextField reason;
     private TextField comment;
 
+
     @Override
     public void start(Stage stage) throws Exception, FileNotFoundException {
+
 
         Label header = new Label("Schedule Office Hour");
         header.setStyle("-fx-font-size: 25px; -fx-font-weight: bold; ");
@@ -159,10 +163,10 @@ public class scheduleController extends Application{
                     comment.getText()
             );
 
-            //ScheduleDAO dao = new CSVScheduleDAO();
-            //dao.save(schedule);  //uses the polymorphic method
+            ScheduleDAO dao = new CSVScheduleDAO();
+            dao.save(schedule);  //uses the polymorphic method
 
-            writescheduleCSV(schedule);
+            //writescheduleCSV(schedule);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Schedule saved successfully!");
 
             // Save the schedule and display the table
@@ -174,7 +178,7 @@ public class scheduleController extends Application{
         }
     }
 
-    private void writescheduleCSV(Schedule schedule) {
+    /*private void writescheduleCSV(Schedule schedule) {
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("schedule.csv", true)))) {
             // split the three-part course string on commas (and trim all parts)
             String[] courseParts = schedule.getCourse().split("\\s*,\\s*");

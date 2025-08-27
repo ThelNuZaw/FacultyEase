@@ -1,7 +1,8 @@
-package s25.cs151.application;
+package s25.cs151.application.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import javafx.application.Application;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -11,12 +12,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import model.Schedule;
-import model.dao.CSVScheduleDAO;
-import model.dao.ScheduleDAO;
+import s25.cs151.application.model.Schedule;
+import s25.cs151.application.model.dao.CSVScheduleDAO;
+import s25.cs151.application.model.dao.ScheduleDAO;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -133,12 +133,12 @@ public class searchOfficeHoursController extends Application {
                 if (toks.length < 6) continue;   // at minimum: name,date,start,end,reason,comment
 
                 String student = toks[0].trim();
-                String date    = toks[1].trim();
-                String start   = toks[2].trim();
-                String end     = toks[3].trim();
+                String date = toks[1].trim();
+                String start = toks[2].trim();
+                String end = toks[3].trim();
 
                 // last two tokens are reason & comment
-                String reason  = toks[toks.length - 2].trim();
+                String reason = toks[toks.length - 2].trim();
                 String comment = toks[toks.length - 1].trim();
 
                 // everything in between [4 .. length-3] is the course field, re-joined with commas
@@ -226,28 +226,9 @@ public class searchOfficeHoursController extends Application {
         TextField commentField = new TextField(selected.getComment());
 
         Button saveButton = new Button("Save Changes");
-        saveButton.setOnAction(e -> {
-            selected.setStudentFullName(nameField.getText().trim());
-            selected.setScheduleDate(dateField.getText().trim());
-            selected.setTimeSlot(startTimeField.getText().trim() + "-" + endTimeField.getText().trim());
-            selected.setCourse(coursePrefixField.getText().trim() + " " + courseNameField.getText().trim());
-            selected.setReason(reasonField.getText().trim());
-            selected.setComment(commentField.getText().trim());
-
-            scheduleTable.refresh();
-
-            ScheduleDAO dao = new CSVScheduleDAO();
-            try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("schedule.csv", false)))) {
-                for (Schedule s : namesList) {
-                    dao.save(s);
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                showAlert(Alert.AlertType.ERROR, "Error saving changes.");
-            }
-
-            editStage.close();
-        });
+        Button cancelButton = new Button("Cancel");
+        saveButton.setDefaultButton(true);
+        cancelButton.setCancelButton(true);
 
         VBox form = new VBox(10,
                 new Label("Student Name:"), nameField,
@@ -257,11 +238,51 @@ public class searchOfficeHoursController extends Application {
                 new Label("Course Prefix:"), coursePrefixField,
                 new Label("Course Name:"), courseNameField,
                 new Label("Reason:"), reasonField,
-                new Label("Comment:"), commentField,
-                saveButton);
+                new Label("Comment:"), commentField);
         form.setPadding(new Insets(15));
-        Scene scene = new Scene(form, 400, 500);
+
+        ScrollPane sp = new ScrollPane(form);
+        sp.setFitToWidth(true);
+        sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        HBox footer = new HBox(10, saveButton, cancelButton);
+        footer.setPadding(new Insets(10));
+        footer.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
+        footer.setStyle("-fx-background-color: rgba(0,0,0,0.03);");
+
+        BorderPane root = new BorderPane();
+        root.setCenter(sp);
+        root.setBottom(footer);
+        saveButton.setOnAction(e -> {
+            selected.setStudentFullName(nameField.getText().trim());
+            selected.setScheduleDate(dateField.getText().trim());
+            selected.setTimeSlot(startTimeField.getText().trim() + "-" + endTimeField.getText().trim());
+            selected.setCourse((coursePrefixField.getText().trim() + " " + courseNameField.getText().trim()).trim());
+            selected.setReason(reasonField.getText().trim());
+            selected.setComment(commentField.getText().trim());
+
+            scheduleTable.refresh();
+            scheduleTable.sort();
+
+            javafx.concurrent.Task<Void> task = new javafx.concurrent.Task<>() {
+                @Override protected Void call() {
+                    saveAllSchedules(namesList); // single atomic write
+                    return null;
+                }
+            };
+            task.setOnSucceeded(ev -> editStage.close());
+            task.setOnFailed(ev ->
+                    showAlert(Alert.AlertType.ERROR, "Error saving changes: " + task.getException().getMessage()));
+            new Thread(task, "save-csv").start();
+        });
+
+        cancelButton.setOnAction(e -> editStage.close());
+
+        Scene scene = new Scene(root, 420, 480);
         editStage.setScene(scene);
+        editStage.setResizable(true);
+        editStage.sizeToScene();
         editStage.show();
     }
 

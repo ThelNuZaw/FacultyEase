@@ -1,6 +1,6 @@
-package model.dao;
+package s25.cs151.application.model.dao;
 
-import model.OfficeHour;
+import s25.cs151.application.model.OfficeHour;
 
 import java.io.*;
 import java.util.ArrayList;

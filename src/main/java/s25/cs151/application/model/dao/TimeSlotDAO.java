@@ -1,6 +1,6 @@
-package model.dao;
+package s25.cs151.application.model.dao;
 
-import model.TimeSlot;
+import s25.cs151.application.model.TimeSlot;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

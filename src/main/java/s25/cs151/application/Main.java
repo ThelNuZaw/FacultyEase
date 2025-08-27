@@ -1,6 +1,6 @@
 package s25.cs151.application;
 
-import controller.facultyHomeController;
+import s25.cs151.application.controller.facultyHomeController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -19,5 +19,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws FileNotFoundException {
         launch();
+
     }
+
 }

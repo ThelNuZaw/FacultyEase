@@ -1,4 +1,4 @@
-package controller;
+package s25.cs151.application.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import s25.cs151.application.searchOfficeHoursController;
+//import s25.cs151.application.searchOfficeHoursController;
 
 public class facultyHomeController {
     public void display(Stage primaryStage) throws IOException {
@@ -44,7 +44,8 @@ public class facultyHomeController {
         btn2.setOnAction(e -> {
             TimeSlotController timeslotApp = new TimeSlotController();
             try {
-                timeslotApp.start(primaryStage);
+                Stage newStage = new Stage();
+                timeslotApp.start(newStage);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

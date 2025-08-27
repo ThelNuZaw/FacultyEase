@@ -1,8 +1,8 @@
-package model.dao;
+package s25.cs151.application.model.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Schedule;
+import s25.cs151.application.model.Schedule;
 
 import java.io.*;
 

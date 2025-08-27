@@ -1,4 +1,4 @@
-package controller;
+package s25.cs151.application.controller;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -11,7 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.TimeSlot;
+import s25.cs151.application.model.TimeSlot;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package controller;
+package s25.cs151.application.controller;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -10,8 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Course;
-import model.dao.CourseDAO;
+import s25.cs151.application.model.Course;
+import s25.cs151.application.model.dao.CourseDAO;
 
 public class CourseController extends Application {
     private TextField courseCodeField;
