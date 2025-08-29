@@ -2,10 +2,10 @@
 The goal of this project is to create FacultyEase, a desktop application that optimizes and arranges faculty office hour scheduling and administration. Common problems including conflicting appointments, ineffective time management, and misunderstandings between students and faculty are addressed by the program. It will give faculty an easy-to-use interface to enter courses, manage time slots, specify semester specifics, and keep track of student appointments. The system enables fundamental functions like search, edit, and reporting and guarantees data reliability through flat files.
 
 ## Table of Contents
-- [Functional Requirement](fr)
-- [Built With](built)
-- [Architecture of Application](archiapp)
-- [Setup and Installation](start)
+- [Functional Requirement](#Functional-requirement)
+- [Built With](#built-with)
+- [Architecture of Application](#architecture-of-application)
+- [Setup and Installation](#setup-and-installation)
 
 ## Functional Requirement
 ### Define Semester Office Hour
@@ -48,8 +48,6 @@ The application follows the **Model–View–Controller (MVC)** design pattern, 
 
 Instead of using FXML files, the JavaFX user interface is built **programmatically inside controller classes**. Even with this approach, the responsibilities of each layer remain conceptually distinct.  
 
----
-
 ### Components  
 
 #### **Model**  
@@ -87,7 +85,10 @@ Instead of using FXML files, the JavaFX user interface is built **programmatical
 - **Reusability**
   The architecture supports replacing or extending persistence mechanisms without altering core logic.  
 - **JavaFX UI**
-  Controllers dynamically build interactive UIs, styled with layouts and CSS.  
+  Controllers dynamically build interactive UIs, styled with layouts and CSS.
+
+## Setup and Installation
+
 
 
   
