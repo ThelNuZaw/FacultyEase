@@ -27,7 +27,7 @@ The goal of this project is to create FacultyEase, a desktop application that op
 - Faculty shall select the course that has been registered.
 - Faculty shall enter reason and comment which are optional.
 - Faculty shall submit the data.
-### Search Office Hour Schedule
+#### Search Office Hour Schedule
 - Faculty shall be able to view all schedule in table view.
 - Faculty shall be able to search the schedule by student name.
 - Faculty shall be able to cancel the schedule by selecting the schedule.
