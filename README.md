@@ -8,19 +8,19 @@ The goal of this project is to create FacultyEase, a desktop application that op
 - [Setup and Installation](#setup-and-installation)
 
 ## Functional Requirement
-### Define Semester Office Hour
+#### Define Semester Office Hour
 - Faculty shall input the year
 - Facult shall select the semester(Spring, Summer, Fall, Winter)
 - Faculty shall select the days.
 - Faculty shall sumbit the data which are saved in corresponding .csv files so that application may use them throughout the pages.
-### Define Time Slot
+#### Define Time Slot
 - Faculty shall select the starting time and ending time.
 - Faculty shall click on the "Add Time Slot" to display data in table view.
 - Faculty shall submit the data.
-### Select the Course
+#### Select the Course
 - Faculty shall enter the course code, course name, and course number.
 - Faculty shall submit the data.
-### Schedule the Office Hour
+#### Schedule the Office Hour
 - Faculty shall enter the student name who wants to make appointment.
 - Faculty shall select the calendar date.
 - Faculty shall select the time slot in time slot lists that has been registed.
