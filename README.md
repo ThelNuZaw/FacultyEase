@@ -76,16 +76,11 @@ Instead of using FXML files, the JavaFX user interface is built **programmatical
   dao.save(schedule);
 
 ### Implementation Highlights  
-- **MVC Alignment**
-  Models manage data, Views present the UI, Controllers handle logic, DAOs manage persistence.  
-- **Polymorphism**
-  DAO interfaces decouple controllers from concrete storage implementations, ensuring extensibility.  
-- **Encapsulation**
-  Private fields in Models enforce data protection, accessible only through getters/setters.  
-- **Reusability**
-  The architecture supports replacing or extending persistence mechanisms without altering core logic.  
-- **JavaFX UI**
-  Controllers dynamically build interactive UIs, styled with layouts and CSS.
+- **MVC Alignment**: Models manage data, Views present the UI, Controllers handle logic, DAOs manage persistence.  
+- **Polymorphism**: DAO interfaces decouple controllers from concrete storage implementations, ensuring extensibility.  
+- **Encapsulation**: Private fields in Models enforce data protection, accessible only through getters/setters.  
+- **Reusability**: The architecture supports replacing or extending persistence mechanisms without altering core logic.  
+- **JavaFX UI**: Controllers dynamically build interactive UIs, styled with layouts and CSS.
 
 ## Setup and Installation
 
