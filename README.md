@@ -98,7 +98,6 @@ git clone https://github.com/ThelNuZaw/FacultyEase.git
 
 ### 4. Run the Application
 - Run s25.cs151.application.Main
-  
 
 
 
