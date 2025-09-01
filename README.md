@@ -83,6 +83,23 @@ Instead of using FXML files, the JavaFX user interface is built **programmatical
 - **JavaFX UI**: Controllers dynamically build interactive UIs, styled with layouts and CSS.
 
 ## Setup and Installation
+### 1. Clone the repository
+```bash
+git clone https://github.com/ThelNuZaw/FacultyEase.git
+```
+### 2. Open the project in IntelliJ IDEA
+- Go to File -> pen and select the project folder.
+- IntelliJ will detect the pom.xml file and import it as a Maven project
+
+### 3. Configure Project SDK
+- Go to File -> Project Structure -> Project
+- Under Project SDK, select Zulu JDK 23
+- Apply and save changes
+
+### 4. Run the Application
+- Run s25.cs151.application.Main
+  
+
 
 
 
